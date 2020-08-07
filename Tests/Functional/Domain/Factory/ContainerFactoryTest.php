@@ -28,14 +28,16 @@ class ContainerFactoryTest extends FunctionalTestCase
     /**
      * @var array
      */
-    protected $coreExtensionsToLoad = ['workspaces'];
+    protected $coreExtensionsToLoad = ['workspaces', 'fluid'];
 
     /**
      * @test
      */
     public function localizedContainerChildElementsHasSortingOfDefaultChildElements(): void
     {
-        $this->importDataSet(ORIGINAL_ROOT . 'typo3conf/ext/container/Tests/Functional/Domain/Factory/Fixture/localizedContainerChildElementsHasSortingOfDefaultChildElements.xml');
+        #$this->importDataSet(ORIGINAL_ROOT . 'typo3conf/ext/container/Tests/Functional/Domain/Factory/Fixture/localizedContainerChildElementsHasSortingOfDefaultChildElements.xml');
+        $this->importDataSet(__DIR__ . '/Fixture/localizedContainerChildElementsHasSortingOfDefaultChildElements.xml');
+
         $containerFactory = GeneralUtility::makeInstance(ContainerFactory::class);
         $container = $containerFactory->buildContainer(2);
         $children = $container->getChildrenByColPos(201);
